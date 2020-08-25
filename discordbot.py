@@ -31,7 +31,8 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
             pass
         else:
             return emoji == '⏫' or emoji == '✖'
-
+    print(len(reaction_member)-1);
+    print(str(cnt));
     while len(reaction_member)-1 <= cnt:
         print('here');
         try:
