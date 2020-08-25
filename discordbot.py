@@ -19,7 +19,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
 
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"あと{cnt}人 募集中 {settime}秒\n", value=None, inline=True)
+    test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
     #投票の欄
     await msg.add_reaction('⏫')
@@ -28,7 +28,6 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     def check(reaction, user):
         emoji = str(reaction.emoji)
         if user.bot == True:    # botは無視
-            print('user.bot');
             pass
         else:
             return emoji == '⏫' or emoji == '✖'
@@ -37,7 +36,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
-            await ctx.send('残念、人が足りなかったようだ...')
+            # await ctx.send('残念、人が足りなかったようだ...')
             break
         else:
             print(str(reaction.emoji))
@@ -47,14 +46,13 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                 else:
                   reaction_member.append(user.name)
                   cnt -= 1
-                  print('cnt='+str(cnt));
                   test = discord.Embed(title=about,colour=0x1e90ff)
-                  test.add_field(name=f"あと__{cnt}__人 募集中 {settime}秒\n", value='\n'.join(reaction_member), inline=True)
+                  test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
                   await msg.edit(embed=test)
                     
                 if cnt == 0:
                     test = discord.Embed(title=about,colour=0x1e90ff)
-                    test.add_field(name=f"あと__{cnt}__人 募集中 {settime}秒\n", value='\n'.join(reaction_member), inline=True)
+                    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                     finish = discord.Embed(title=about,colour=0x1e90ff)
                     finish.add_field(name="おっと、メンバーがきまったようだ",value='\n'.join(reaction_member), inline=True)
@@ -64,9 +62,8 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                 if user.name in reaction_member:
                     reaction_member.remove(user.name)
                     cnt += 1
-                    print('cnt='+str(cnt));
                     test = discord.Embed(title=about,colour=0x1e90ff)
-                    test.add_field(name=f"あと__{cnt}__人 募集中 {settime}秒\n", value='\n'.join(reaction_member), inline=True)
+                    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                 else:
                     pass
