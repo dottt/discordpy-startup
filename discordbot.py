@@ -13,13 +13,13 @@ async def on_ready():
     print('------')
 
 @client.command()
-async def rect(ctx, about = "募集", cnt = 4, settime = 600.0):
+async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
 
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"あと{cnt}人 募集中{settime}秒\n", value=None, inline=True)
+    test.add_field(name=f"あと{cnt}人 募集中 {settime}秒\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
     #投票の欄
     await msg.add_reaction('⏫')
@@ -49,12 +49,12 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 600.0):
                   cnt -= 1
                   print('cnt='+str(cnt));
                   test = discord.Embed(title=about,colour=0x1e90ff)
-                  test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+                  test.add_field(name=f"あと__{cnt}__人 募集中 {settime}秒\n", value='\n'.join(reaction_member), inline=True)
                   await msg.edit(embed=test)
                     
                 if cnt == 0:
                     test = discord.Embed(title=about,colour=0x1e90ff)
-                    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+                    test.add_field(name=f"あと__{cnt}__人 募集中 {settime}秒\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                     finish = discord.Embed(title=about,colour=0x1e90ff)
                     finish.add_field(name="おっと、メンバーがきまったようだ",value='\n'.join(reaction_member), inline=True)
@@ -66,7 +66,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 600.0):
                     cnt += 1
                     print('cnt='+str(cnt));
                     test = discord.Embed(title=about,colour=0x1e90ff)
-                    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+                    test.add_field(name=f"あと__{cnt}__人 募集中 {settime}秒\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                 else:
                     pass
