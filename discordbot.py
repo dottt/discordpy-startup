@@ -3,7 +3,7 @@ from discord.ext import commands
 import asyncio
 import os
 
-client = commands.Bot(command_prefix='.')
+client = commands.Bot(command_prefix='!')
 token = os.environ['DISCORD_BOT_TOKEN']
 @client.event
 async def on_ready():
@@ -13,7 +13,7 @@ async def on_ready():
     print('------')
 
 @client.command()
-async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
+async def rect(ctx, about = "募集", cnt = 4, settime = 600.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
     print('cnt='+str(cnt));
