@@ -16,10 +16,10 @@ async def on_ready():
 async def rect(ctx, about = "募集", cnt = 4, settime = 600.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
-    print('cnt='+str(cnt));
+
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
+    test.add_field(name=f"あと{cnt}人 募集中{settime}秒\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
     #投票の欄
     await msg.add_reaction('⏫')
@@ -34,7 +34,6 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 600.0):
             return emoji == '⏫' or emoji == '✖'
 
     while len(reaction_member)-1 <= max_cnt:
-        print('here');
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
