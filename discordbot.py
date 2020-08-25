@@ -33,6 +33,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
             return emoji == '⏫' or emoji == '✖'
 
     while len(reaction_member)-1 <= cnt:
+        print('here');
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
