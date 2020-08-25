@@ -43,6 +43,8 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
         else:
             print(str(reaction.emoji))
             if str(reaction.emoji) == '⏫':
+                if user.name in reaction_member:
+                    pass
                 reaction_member.append(user.name)
                 cnt -= 1
                 print('cnt='+str(cnt));
