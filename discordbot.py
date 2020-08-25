@@ -44,7 +44,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
             print(str(reaction.emoji))
             if str(reaction.emoji) == '⏫':
                 if user.name in reaction_member:
-                    pass
+                    break
                 reaction_member.append(user.name)
                 cnt -= 1
                 print('cnt='+str(cnt));
@@ -72,8 +72,5 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
                     pass
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
-        print('removed');
-        print(len(reaction_member)-1);
-        print(str(cnt));
 
 client.run(token)
