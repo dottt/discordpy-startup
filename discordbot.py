@@ -30,7 +30,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
             pass
         else:
             return emoji == '⏫' or emoji == '✖'
-
+    print( len(reaction_member));
     while len(reaction_member)-1 <= cnt:
         try:
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
