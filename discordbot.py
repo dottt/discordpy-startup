@@ -15,7 +15,7 @@ async def on_ready():
 @client.command()
 async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
     cnt, settime = int(cnt), float(settime)
-    print('cnt='+cnt);
+    print('cnt='+str(cnt));
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
     test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
@@ -42,7 +42,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
             if str(reaction.emoji) == '⏫':
                 reaction_member.append(user.name)
                 cnt -= 1
-                print('cnt='+cnt);
+                print('cnt='+str(cnt));
                 test = discord.Embed(title=about,colour=0x1e90ff)
                 test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
                 await msg.edit(embed=test)
@@ -59,7 +59,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10.0):
                 if user.name in reaction_member:
                     reaction_member.remove(user.name)
                     cnt += 1
-                    print('cnt='+cnt);
+                    print('cnt='+str(cnt));
                     test = discord.Embed(title=about,colour=0x1e90ff)
                     test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
