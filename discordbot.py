@@ -16,7 +16,7 @@ async def on_ready():
 async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
-
+    print(ctx.author.name);
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
     test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
