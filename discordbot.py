@@ -22,7 +22,8 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
     
-    reaction_member.append(ctx.author.name)
+    leader = ctx.author.name
+    reaction_member.append(leader)
     cnt -= 1
     test = discord.Embed(title=about,colour=0x1e90ff)
     test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
@@ -65,6 +66,11 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                     await ctx.send(embed=finish)
 
             elif str(reaction.emoji) == '✖':
+                if user.name == leader
+                    test = discord.Embed(title=about,colour=0x1e90ff)
+                    test.add_field(name=f"募集主が募集をやめました\n", value='\n'.join(reaction_member), inline=True)
+                    await msg.edit(embed=test)
+                    break
                 if user.name in reaction_member:
                     reaction_member.remove(user.name)
                     cnt += 1
