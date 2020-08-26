@@ -66,7 +66,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                     await ctx.send(embed=finish)
 
             elif str(reaction.emoji) == '✖':
-                if user.name == leader
+                if user.name == leader:
                     test = discord.Embed(title=about,colour=0x1e90ff)
                     test.add_field(name=f"募集主が募集をやめました\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
