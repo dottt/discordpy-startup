@@ -3,6 +3,9 @@ from discord.ext import commands
 import asyncio
 import os
 import datetime
+from datetime import datetime, timedelta, timezone
+
+JST = timezone(timedelta(hours=+9), 'JST')
 
 client = commands.Bot(command_prefix='!')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -17,7 +20,7 @@ async def on_ready():
 async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
-    now = datetime.datetime.now()
+    now = datetime.now(JST)
     end_at = now + datetime.timedelta(seconds=settime)
 
     reaction_member = [">>>"]
