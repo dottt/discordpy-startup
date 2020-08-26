@@ -16,11 +16,18 @@ async def on_ready():
 async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
-    print(ctx.author.name);
+
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
     test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
+    
+    reaction_member.append(ctx.author.name)
+    cnt -= 1
+    test = discord.Embed(title=about,colour=0x1e90ff)
+    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+    await msg.edit(embed=test)
+    
     #投票の欄
     await msg.add_reaction('⏫')
     await msg.add_reaction('✖')
@@ -39,7 +46,6 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
             # await ctx.send('残念、人が足りなかったようだ...')
             break
         else:
-            print(str(reaction.emoji))
             if str(reaction.emoji) == '⏫':
                 if user.name in reaction_member:
                     pass
