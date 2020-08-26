@@ -20,7 +20,7 @@ async def on_ready():
 async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
-    now = datetime.datetime.now(JST)
+    now = datetime.now(JST)
     end_at = now + timedelta(seconds=settime)
 
     reaction_member = [">>>"]
