@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import os
+import datetime
 
 client = commands.Bot(command_prefix='!')
 token = os.environ['DISCORD_BOT_TOKEN']
@@ -16,10 +17,12 @@ async def on_ready():
 async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     cnt, settime = int(cnt), float(settime)
     max_cnt = cnt;
+    now = datetime.datetime.now()
+    end_at = now + datetime.timedelta(seconds=settime)
 
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"あと{cnt}人 募集中\n", value=None, inline=True)
+    test.add_field(name=f"あと{cnt}人 募集中 {now.strftime('%H:%M:%S')}まで\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
     
     leader = ctx.author.name
