@@ -25,14 +25,14 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
 
     reaction_member = [">>>"]
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"あと{cnt}人 募集中 {now.strftime('%H:%M:%S')}まで\n", value=None, inline=True)
+    test.add_field(name=f"あと{cnt}人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value=None, inline=True)
     msg = await ctx.send(embed=test)
     
     leader = ctx.author.name
     reaction_member.append(leader)
     cnt -= 1
     test = discord.Embed(title=about,colour=0x1e90ff)
-    test.add_field(name=f"あと__{cnt}__人 募集中 {now.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
+    test.add_field(name=f"あと__{cnt}__人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
     await msg.edit(embed=test)
     
     #投票の欄
@@ -63,12 +63,12 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                   reaction_member.append(user.name)
                   cnt -= 1
                   test = discord.Embed(title=about,colour=0x1e90ff)
-                  test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+                  test.add_field(name=f"あと__{cnt}__人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
                   await msg.edit(embed=test)
                     
                 if cnt == 0:
                     test = discord.Embed(title=about,colour=0x1e90ff)
-                    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+                    test.add_field(name=f"あと__{cnt}__人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                     finish = discord.Embed(title=about,colour=0x1e90ff)
                     finish.add_field(name="おっと、メンバーがきまったようだ",value='\n'.join(reaction_member), inline=True)
@@ -84,7 +84,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                     reaction_member.remove(user.name)
                     cnt += 1
                     test = discord.Embed(title=about,colour=0x1e90ff)
-                    test.add_field(name=f"あと__{cnt}__人 募集中\n", value='\n'.join(reaction_member), inline=True)
+                    test.add_field(name=f"あと__{cnt}__人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                 else:
                     pass
