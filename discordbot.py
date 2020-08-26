@@ -48,6 +48,9 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
             reaction, user = await client.wait_for('reaction_add', timeout=settime, check=check)
         except asyncio.TimeoutError:
             # await ctx.send('残念、人が足りなかったようだ...')
+            test = discord.Embed(title=about,colour=0x1e90ff)
+            test.add_field(name=f"募集期限が切れました\n", value='\n'.join(reaction_member), inline=True)
+            await msg.edit(embed=test)
             break
         else:
             if str(reaction.emoji) == '⏫':
