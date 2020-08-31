@@ -104,8 +104,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                     test.add_field(name=f"あと__{cnt}__人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
                     await msg.edit(embed=test)
                 else:
-                    pass
-                continue
+                    continue
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
 
