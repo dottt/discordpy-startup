@@ -49,7 +49,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
         if user.bot == True:    # botは無視
             pass
         else:
-            return emoji == '⏫' or emoji == '✖' or emoji == sanka or emoji == husanka
+            return emoji == '⏫' or emoji == '✖' or emoji == str(sanka) or emoji == str(husanka)
 
     while len(reaction_member)-1 <= max_cnt:
         try:
@@ -93,6 +93,10 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                     await msg.edit(embed=test)
                 else:
                     pass
+            elif str(reaction.emoji) == str(sanka):
+                print('sanka')
+            elif str(reaction.emoji) == str(husanka):
+                print('husanka')
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
 
