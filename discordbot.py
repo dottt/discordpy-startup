@@ -41,7 +41,6 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     await msg.add_reaction(sanka)
     husanka = get(client.emojis, name='husanka')
     await msg.add_reaction(husanka)
-    await msg.add_reaction('✖')
 
     def check(reaction, user):
         emoji = str(reaction.emoji)
