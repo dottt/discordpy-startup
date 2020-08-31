@@ -93,8 +93,20 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
                 else:
                     pass
             elif str(reaction.emoji) == str(husanka):
-                print('husanka')
-                pass
+                if user.name == leader:
+                    test = discord.Embed(title=about,colour=0x1e90ff)
+                    test.add_field(name=f"募集主が募集をやめました\n", value='\n'.join(reaction_member), inline=True)
+                    await msg.edit(embed=test)
+                    break
+                if user.name in reaction_member:
+                    reaction_member.remove(user.name)
+                    cnt += 1
+                    test = discord.Embed(title=about,colour=0x1e90ff)
+                    test.add_field(name=f"あと__{cnt}__人 募集中 {end_at.strftime('%H:%M:%S')}まで\n", value='\n'.join(reaction_member), inline=True)
+                    await msg.edit(embed=test)
+                else:
+                    pass
+                continue
         # リアクション消す。メッセージ管理権限がないとForbidden:エラーが出ます。
         await msg.remove_reaction(str(reaction.emoji), user)
 
