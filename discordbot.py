@@ -39,18 +39,17 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
     #投票の欄
     await msg.add_reaction('⏫')
     await msg.add_reaction('✖')
-    emoji = get(client.emojis, name='sanka')
-    await msg.add_reaction(emoji)
+    sanka = get(client.emojis, name='sanka')
+    await msg.add_reaction(sanka)
+    husanka = get(client.emojis, name='husanka')
+    await msg.add_reaction(husanka)
                    
     def check(reaction, user):
         emoji = str(reaction.emoji)
-        print(emoji)
-        if emoji.startswith('<:sanka:'):
-            print('sanka')
         if user.bot == True:    # botは無視
             pass
         else:
-            return emoji == '⏫' or emoji == '✖'
+            return emoji == '⏫' or emoji == '✖' or emoji == sanka or emoji == husanka
 
     while len(reaction_member)-1 <= max_cnt:
         try:
