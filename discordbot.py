@@ -41,6 +41,7 @@ async def rect(ctx, about = "募集", cnt = 4, settime = 10800.0):
 
     def check(reaction, user):
         emoji = str(reaction.emoji)
+        print(emoji)
         if user.bot == True:    # botは無視
             pass
         else:
